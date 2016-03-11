@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HeatmapTimeline</title>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.13.1/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.13.1/build/ol-debug.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/vis/4.11.0/vis.min.css" type="text/css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vis/4.11.0/vis.min.js"></script>
+   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/vis/4.11.0/vis.min.css" type="text/css">
+  </head>
+  <body>
+    <div id="timeline" class="timeline"></div>
+    <div id="map" class="map"></div>
+    <form>
+      <label>radius size</label>
+      <input id="radius" type="range" min="1" max="50" step="1" value="5"/>
+      <label>blur size</label>
+      <input id="blur" type="range" min="1" max="50" step="1" value="15"/>
+    </form>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
