@@ -89,7 +89,7 @@ var vector = new ol.layer.Heatmap({
   blur: parseInt(blur.value, 10),
   radius: parseInt(radius.value, 10)
 });
-
+//
 vector.getSource().on('addfeature', function(event) {
   // our KML stores the weight of each feature in a
   // standards-violating  tag in each Placemark.  We extract it from
