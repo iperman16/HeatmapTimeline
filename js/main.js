@@ -110,10 +110,13 @@ vector.getSource().on('addfeature', function(event) {
     event.feature.set('weight', magnitude*100 - 5);
 
 },this);
-//base layer
+//base layer from mapbox
 var raster = new ol.layer.Tile({
-      source: new ol.source.OSM()
-    });
+      source: new ol.source.XYZ({
+        tileSize: [512, 512],
+        url: 'https://api.mapbox.com/styles/v1/zpg94/cik74z92b00es96kpaatrdczg/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoienBnOTQiLCJhIjoiY2loNnBhcG1jMDR2YnVta2k3Mnczb21ibiJ9.NtJzwHt_WMSDj1N_gc65pw'
+      })
+    })
 //add map layers
 mapLayers.add(raster);
 mapLayers.add(vector);
