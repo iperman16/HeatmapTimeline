@@ -6,37 +6,8 @@ function HeatMapTimeLine(parameters) {
   */
 
 this.timelineElements = new vis.DataSet({}); //list of visJS map objects
-this.drawTimeline = function (drawPoint) {
-  const items = this.timelineElements;
 
-    // create visualization
-    var container = document.getElementById(drawPoint);
-    var options = {
-      height: '300px',
-      start: new Date(1860, 0, 1),
-      end: new Date(1864, 0, 1),
-      min: new Date(1860, 0, 1),                // lower limit of visible range
-      max: new Date(1864, 0, 1),                // upper limit of visible range
-      zoomMin: 1000 * 60 * 60 * 24,             // one day in milliseconds
-      zoomMax: 1000 * 60 * 60 * 24 * 31 * 3     // about three months in milliseconds
-    };
 
-    // create the timeline
-    var timeline = new vis.Timeline(container);
-    timeline.setOptions(options);
-    timeline.setItems(items);
-
-    //addEventListeners for timeline
-
-    timeline.on('select', function (properties) {
-        console.log(properties.nodes);
-    });
-    timeline.on('rangechanged',function (properties) {
-      const start = properties.start;
-      const end = properties.end;
-
-    });
-};
 if(parameters.hasOwnProperty('mapId') && parameters.hasOwnProperty('timelineId')) {
 var blur = document.getElementById('blur');
 var radius = document.getElementById('radius');
@@ -85,21 +56,49 @@ var map = new ol.Map({
     zoom: 2
   })
 });
-console.log("bob");
-this.drawTimeline(parameters.timelineId);
-} else  {
-  alert("invalid constructor");
-}
 
 
 blur.addEventListener('input', function() {
   vector.setBlur(parseInt(blur.value, 10));
 });
-
 radius.addEventListener('input', function() {
   vector.setRadius(parseInt(radius.value, 10));
-
-
 });
+
+
+  // create visualization
+  var container = document.getElementById(parameters.timelineId);
+  var options = {
+    height: '300px',
+    start: new Date(1860, 0, 1),
+    end: new Date(1864, 0, 1),
+    min: new Date(1860, 0, 1),                // lower limit of visible range
+    max: new Date(1864, 0, 1),                // upper limit of visible range
+    zoomMin: 1000 * 60 * 60 * 24,             // one day in milliseconds
+    zoomMax: 1000 * 60 * 60 * 24 * 31 * 3     // about three months in milliseconds
+  };
+
+  // create the timeline
+  var timeline = new vis.Timeline(container);
+  timeline.setOptions(options);
+  timeline.setItems(this.timelineElementss);
+
+  //addEventListeners for timeline
+
+  timeline.on('select', function (properties) {
+      console.log(properties.nodes);
+  });
+  timeline.on('rangechanged',function (properties) {
+
+  });
+
+
+
+
+} else  {
+  alert("invalid constructor");
+}
+
+
 };
 var app =  new HeatMapTimeLine({mapId:"map",timelineId:"timeline"});
